@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.awt.*;
 public class JFrameClass extends JFrame {
 	JButton jb;	
-		
+	String text ="mingy cunt";	
 			
 	public JFrameClass(){
 	//setup
