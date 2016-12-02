@@ -4,11 +4,15 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class ChoicePage extends JFrame{
+														
+public class ChoicePage extends JFrame {
 	
 	double bet=0.0;
 	JButton randomNumGame;
 	JButton chooseNumGame;
+//	JButton makeBetButton;
+	JTextField betField;
+	
 	
 	public ChoicePage(){
 
@@ -43,13 +47,16 @@ public class ChoicePage extends JFrame{
 	pane1.add(makeBetButton);
 	
 	makeBetButton.addActionListener(new myListener());
+	
+	
 	}	
-	public class myListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			if(e.getSource()==makeBetButton){
-					betField("");
-					}
-		}
+		
+}
+		
+	
+
+
+		
 	
 	
 	
@@ -61,6 +68,5 @@ public class ChoicePage extends JFrame{
 
 	
 		
-}
+
 	
-}
