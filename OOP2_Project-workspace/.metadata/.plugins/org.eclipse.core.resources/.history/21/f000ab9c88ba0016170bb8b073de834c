@@ -1,0 +1,13 @@
+import javax.swing.*;
+
+public class BettingAppMain {
+	
+	public static void main(String args[]){
+		
+		Betting bettingFrame = new Betting();
+		betingFrame.setDefaultCloseOperation(JFrame.)
+	}
+	
+	
+
+}

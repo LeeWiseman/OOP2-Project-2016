@@ -1,0 +1,70 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+
+public class ChooseGame extends JFrame {
+	private JTextField inputNumber;
+	private JLabel enterNo;
+	private JButton backBtn;
+	private int choosenNumber, winningNumber;
+	Random spinner = new Random();
+	
+	
+	
+	public ChooseGame(){
+		super("ChooseGame");
+		setLayout(new FlowLayout());
+		
+		enterNo = new JLabel("Enter your number (1-25)");
+		add(enterNo);
+		
+		inputNumber = new JTextField(3);
+		add(inputNumber);
+		
+		backBtn = new JButton("Back");
+		add(backBtn);
+		
+		backHandler pressBack = new backHandler();
+		backBtn.addActionListener(pressBack);
+		
+		spinHandler spinIt = new spinHandler();
+		
+		
+	}
+	
+	private class backHandler implements ActionListener{
+		public void actionPerformed(ActionEvent backPress){
+			Betting bettingFrame = new Betting();
+			bettingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			bettingFrame.setSize(400,500);
+			bettingFrame.setLocation(500,100);
+			bettingFrame.setResizable(false);
+			bettingFrame.setVisible(true);
+			
+			setVisible(false);
+			
+		}
+			
+		
+	}
+	
+	private class spinHandler implements ActionListener{
+		public void actionPerformed(ActionEvent spinPress){
+			winningNumber = 1+(spinner.nextInt(25));
+			
+			
+		}		
+	}
+	
+	private class setNumHandler implements ActionListener{
+		public void actionPerformed(ActionEvent choosePress){
+				choosenNumber = Integer.parseInt(inputNumber.getText());
+				inputNumber.setText("");
+				System.out.println("Your number is "+choosenNumber);
+				
+				
+	}
+	}
+
+}

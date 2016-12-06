@@ -1,0 +1,54 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class RandomGame extends JFrame {
+	
+	private JButton spinBtn;
+	private JButton backBtn;
+	//private balanceAmountHere = Betting.getBet();
+		
+	
+	
+	public RandomGame(){
+		super("RandomGame");
+		setLayout(new FlowLayout());
+		
+		spinBtn = new JButton("Spin");
+		add(spinBtn);
+		
+		backBtn = new JButton("Back");
+		add(backBtn);
+		
+		backHandler back = new backHandler();
+		backBtn.addActionListener(back);
+		
+		
+		
+		System.out.println("Your bet amount is "+Betting.betAmountD);
+		System.out.println("Your  remaining balance is "+(Betting.balanceAmount-Betting.betAmountD));
+		
+	}
+		
+		private class backHandler implements ActionListener{
+			public void actionPerformed(ActionEvent backPress){
+				Betting bettingFrame = new Betting();
+				bettingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				bettingFrame.setSize(400,500);
+				bettingFrame.setLocation(500,100);
+				bettingFrame.setResizable(false);
+				bettingFrame.setVisible(true);
+				
+				setVisible(false);
+				
+			}
+				
+			
+		}
+		}
+		
+		
+	
+
+

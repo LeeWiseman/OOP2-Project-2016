@@ -1,0 +1,94 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+
+
+public class RandomGame extends JFrame {
+	
+	private JButton spinBtn;
+	private JButton backBtn;
+	private JTextArea numbers;
+	private int choosenNumber, winningNumber;
+	private boolean win;
+	private JLabel balanceText, betAmount;
+	Random spinner = new Random();
+	
+		
+	
+	
+	public RandomGame(){
+		super("RandomGame");
+		setLayout(new FlowLayout());
+		
+		betAmount = new JLabel("Youre betting "+Betting.betAmountD+" per spin");
+		add(betAmount);
+		
+		balanceText = new JLabel("Your Balance is "+Betting.balanceAmount);
+		add(balanceText);
+		
+		spinBtn = new JButton("Spin");
+		add(spinBtn);
+		
+		backBtn = new JButton("Back");
+		add(backBtn);
+		
+		numbers = new JTextArea("");
+		numbers.setOpaque(false);
+		numbers.setEditable(false);
+	    numbers.setBackground(new Color(0,0,0,0));
+	    numbers.setFont(numbers.getFont().deriveFont(14f));
+		add(numbers);
+		
+		backHandler back = new backHandler();
+		backBtn.addActionListener(back);
+		
+		spinHandler spinit = new spinHandler();
+		spinBtn.addActionListener(spinit);
+		
+	}
+		
+		private class backHandler implements ActionListener{
+			public void actionPerformed(ActionEvent backPress){
+				Betting bettingFrame = new Betting();
+				bettingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				bettingFrame.setSize(400,500);
+				bettingFrame.setLocation(500,100);
+				bettingFrame.setResizable(false);
+				bettingFrame.setVisible(true);
+				
+				setVisible(false);
+				
+			}	
+		}
+		
+		private class spinHandler implements ActionListener{
+			public void actionPerformed(ActionEvent spinPress){
+				choosenNumber = 1+(spinner.nextInt(10));
+				winningNumber = 1+(spinner.nextInt(10));
+				
+				
+				
+				if(choosenNumber == winningNumber){
+					numbers.setText("Your number was "+choosenNumber+"\nThe winning Number was "+winningNumber+"\nCongratulation, You Won!");
+					win = true;
+					Betting.wincount ++;
+					Betting.balanceAmount += Betting.betAmountD*3;
+					balanceText.setText("You're new balance is "+Betting.balanceAmount);
+					
+				}
+				else{
+					numbers.setText("Your number was "+choosenNumber+"\nThe winning Number was "+winningNumber+"\nBetter Luck Next Time");
+					Betting.balanceAmount -= Betting.betAmountD;
+					balanceText.setText("You're new balance is "+Betting.balanceAmount);
+				}
+				
+				
+			}		
+		}
+		}
+		
+		
+	
+
+

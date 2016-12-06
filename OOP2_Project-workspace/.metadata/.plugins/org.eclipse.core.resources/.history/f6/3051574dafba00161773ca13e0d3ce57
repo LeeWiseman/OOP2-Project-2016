@@ -1,0 +1,99 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Betting extends JFrame {
+	private JButton randomButton, chooseButton, betButton;
+	private JLabel betLabel;
+	private JTextField inputBet;
+	public static double betAmountD;
+	public static double balanceAmount = 500.00;
+	private JLabel balanceText;
+	
+	
+	public double getBet(){
+		return betAmountD;
+	}
+	
+	
+	
+	public Betting(){
+		super("Betting");
+		Container contents = new Container();
+		setLayout(null);
+		contents.setLocation(500,100);;
+		contents.setVisible(true);
+		
+		
+		betLabel = new JLabel("Choose your bet amount");
+		contents.add(betLabel);
+		
+		
+		inputBet = new JTextField(5);
+		contents.add(inputBet);
+		
+		betButton = new JButton("Place Bet");
+		contents.add(betButton);
+		
+		randomButton = new JButton("Random Number");
+		contents.add(randomButton);
+		
+		chooseButton = new JButton("Choose Number");
+		contents.add(chooseButton);
+		
+		balanceText = new JLabel("Your Balance is "+balanceAmount);
+		contents.add(balanceText);
+		
+		
+		placeBetHandler placeBet = new placeBetHandler();
+		betButton.addActionListener(placeBet);
+		
+		randomHandler randomGameBtn = new randomHandler();
+		randomButton.addActionListener(randomGameBtn);
+		
+		chooseHandler chooseBtn = new chooseHandler();
+		chooseButton.addActionListener(chooseBtn);
+		
+	}
+	
+	private class placeBetHandler implements ActionListener{
+		public void actionPerformed(ActionEvent changeBetPress){
+				betAmountD = Double.parseDouble(inputBet.getText());
+				inputBet.setText("");
+				System.out.println("Your Bet is "+betAmountD);
+				
+				
+	}
+	}
+		
+	private class randomHandler implements ActionListener{
+		public void actionPerformed(ActionEvent randomPress){
+			RandomGame randomWindow = new RandomGame();
+			randomWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			randomWindow.setSize(400,500);
+			randomWindow.setLocation(500,100);
+			randomWindow.setResizable(false);
+			randomWindow.setVisible(true);
+			
+			setVisible(false);
+		
+	}
+	}
+		
+	
+	private class chooseHandler implements ActionListener{
+		public void actionPerformed(ActionEvent choosePress){
+			ChooseGame chooseWindow = new ChooseGame();
+			chooseWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			chooseWindow.setSize(400,500);
+			chooseWindow.setLocation(500,100);
+			chooseWindow.setResizable(false);
+			chooseWindow.setVisible(true);
+			
+			setVisible(false);
+		
+	}
+	}
+	
+}
+

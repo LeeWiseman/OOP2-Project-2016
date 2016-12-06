@@ -1,0 +1,27 @@
+import java.awt.Image;
+
+import javax.swing.*;
+
+public class BettingAppMain {
+	
+	public static void main(String args[]){
+		
+		ImageIcon logoicon = new ImageIcon("MoneyBag.png");
+		Image logo = logoicon.getImage();
+		setIconImage(logo);
+		
+		Betting bettingFrame = new Betting();
+		bettingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		bettingFrame.setSize(400,500);
+		bettingFrame.setLocation(500,500);
+		bettingFrame.setVisible(true);
+	}
+
+	private static void setIconImage(Image logo) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
+}

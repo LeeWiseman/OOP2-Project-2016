@@ -1,0 +1,92 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+
+public class ChooseGame extends JFrame {
+	private JTextField inputNumber;
+	private JLabel enterNo, choosenNum;
+	private JButton backBtn, spinBtn, setBtn;
+	private int choosenNumber, winningNumber;
+	Random spinner = new Random();
+	
+	
+	
+	public ChooseGame(){
+		super("ChooseGame");
+		setLayout(new FlowLayout());
+		
+		enterNo = new JLabel("Enter your number (1-25)");
+		add(enterNo);
+		
+		inputNumber = new JTextField(3);
+		add(inputNumber);
+		
+		setBtn = new JButton("Set Choice");
+		add(setBtn);
+		
+		
+		spinBtn = new JButton("Spin");
+		add(spinBtn);
+		
+		backBtn = new JButton("Back");
+		add(backBtn);
+		
+		
+		backHandler pressBack = new backHandler();
+		backBtn.addActionListener(pressBack);
+		
+		spinHandler spinIt = new spinHandler();
+		spinBtn.addActionListener(spinIt);
+		
+		setNumHandler setNo = new setNumHandler();
+		setBtn.addActionListener(setNo);
+		
+		choosenNum = new JLabel("Your choosen Number is "+choosenNumber);
+		add(choosenNum);
+		choosenNum.setVisible(false);
+		
+	}
+	
+	private class backHandler implements ActionListener{
+		public void actionPerformed(ActionEvent backPress){
+			Betting bettingFrame = new Betting();
+			bettingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			bettingFrame.setSize(400,500);
+			bettingFrame.setLocation(500,100);
+			bettingFrame.setResizable(false);
+			bettingFrame.setVisible(true);
+			
+			setVisible(false);
+			
+		}
+			
+		
+	}
+	private class setNumHandler implements ActionListener{
+		public void actionPerformed(ActionEvent setPress){
+			choosenNumber = Integer.parseInt(inputNumber.getText());
+			inputNumber.setText("");
+			choosenNum.setVisible(true);
+		}		
+	}
+	
+	
+	private class spinHandler implements ActionListener{
+		public void actionPerformed(ActionEvent spinPress){
+			winningNumber = 1+(spinner.nextInt(25));
+			
+			
+			
+			if(choosenNumber == winningNumber){
+				System.out.println("Your number was "+choosenNumber+"\nThe winning Number was "+winningNumber+"\nCongratulation, You Won!");
+			}
+			else{
+				System.out.println("Your number was "+choosenNumber+"\nThe winning Number was "+winningNumber+"\nBetter Luck Next Time");
+			}
+			
+			
+		}		
+	}
+
+}

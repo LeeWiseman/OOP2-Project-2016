@@ -1,0 +1,16 @@
+import javax.swing.JFrame;
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class RandomGame extends JFrame {
+	
+	public RandomGame(){
+		RandomGame randomWindow = new RandomGame();
+		randomWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		randomWindow.setSize(400,500);
+		randomWindow.setLocation(500,100);
+		randomWindow.setVisible(true);
+	}
+
+}
