@@ -13,6 +13,7 @@ public class BettingAppMain {
 		bettingFrame.setLocation(500,100);
 		bettingFrame.setResizable(false);
 		bettingFrame.setVisible(true);
+	
 		
 		
 	}

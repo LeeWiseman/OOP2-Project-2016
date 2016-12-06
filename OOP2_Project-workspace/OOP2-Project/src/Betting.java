@@ -23,38 +23,69 @@ public class Betting extends JFrame {
 	
 	public Betting(){
 		super("Betting");
-		setLayout(new FlowLayout());
+		JPanel contentPane = new JPanel();
+		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+		contentPane.setOpaque(true);
+		
+		upperPanel = new JPanel();
+		upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.Y_AXIS));
+		upperPanel.setOpaque(true);
+		contentPane.add(upperPanel);
+		
+		
+	
+		
+		lowerPanel = new JPanel();
+		lowerPanel.setPreferredSize(new Dimension (2,2));
+		lowerPanel.setLayout(new BoxLayout(lowerPanel, BoxLayout.Y_AXIS));
+		lowerPanel.setOpaque(true);
+		add(lowerPanel);
 		
 		ImageIcon img = new ImageIcon("moneyBag.png");
 		setIconImage(img.getImage());
 		
 		balanceText = new JLabel("Your Balance is €"+balanceAmount);
-		add(balanceText);
+		upperPanel.add(balanceText);
+		
 		
 		wincountLabel = new JLabel("You have won "+wincount+" times");
-		add(wincountLabel);
-				
-		betLabel = new JLabel("Change your bet?");
-		add(betLabel);
+		upperPanel.add(wincountLabel);
+		
+		JLabel moneyBagImg = (new JLabel(new ImageIcon("moneyBag.png")));
+		moneyBagImg.setSize(10,10);
+		
+		upperPanel.add(moneyBagImg);
 		
 		inputBet = new JTextField(5);
-		add(inputBet);
-			
-	
+		inputBet.setSize(10,5);
+		upperPanel.add(inputBet);
+		
+		betLabel = new JLabel("Change your bet?");
+		lowerPanel.add(betLabel);
+		
 		betButton = new JButton("Change Bet Amount");
-		add(betButton);
+		lowerPanel.add(betButton);
+		
 		
 		addBet = new JButton("+");
-		add(addBet);
+		lowerPanel.add(addBet);
+		
 		
 		betAmountLabel = new JLabel("Your current bet is "+betAmountD);
-		add(betAmountLabel);
-
+		lowerPanel.add(betAmountLabel);
+		
+	
+		
+		
 		randomButton = new JButton("Random Number");
-		add(randomButton);
+		lowerPanel.add(randomButton, BorderLayout.EAST);
+		
 		
 		chooseButton = new JButton("Choose Number");
-		add(chooseButton);
+		lowerPanel.add(chooseButton, BorderLayout.WEST);
+		
+		
+	
 		
 		
 		
