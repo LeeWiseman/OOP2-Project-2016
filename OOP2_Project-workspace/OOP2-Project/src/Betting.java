@@ -12,6 +12,7 @@ public class Betting extends JFrame {
 	public static double balanceAmount = 500.00;
 	private JLabel balanceText, moneyBag;
 	public static int wincount;
+	public JPanel upperPanel, lowerPanel;
 	
 	
 	public double getBet(){
@@ -22,26 +23,24 @@ public class Betting extends JFrame {
 	
 	public Betting(){
 		super("Betting");
-		
 		setLayout(new FlowLayout());
-		
-		moneyBag = (new JLabel(new ImageIcon("moneyBag.png")));
-		add(moneyBag);
 		
 		ImageIcon img = new ImageIcon("moneyBag.png");
 		setIconImage(img.getImage());
 		
+		balanceText = new JLabel("Your Balance is €"+balanceAmount);
+		add(balanceText);
 		
-		
+		wincountLabel = new JLabel("You have won "+wincount+" times");
+		add(wincountLabel);
+				
 		betLabel = new JLabel("Change your bet?");
 		add(betLabel);
 		
-		
 		inputBet = new JTextField(5);
 		add(inputBet);
-		
-		
-		
+			
+	
 		betButton = new JButton("Change Bet Amount");
 		add(betButton);
 		
@@ -50,18 +49,13 @@ public class Betting extends JFrame {
 		
 		betAmountLabel = new JLabel("Your current bet is "+betAmountD);
 		add(betAmountLabel);
-		
+
 		randomButton = new JButton("Random Number");
 		add(randomButton);
 		
 		chooseButton = new JButton("Choose Number");
 		add(chooseButton);
 		
-		balanceText = new JLabel("Your Balance is "+balanceAmount);
-		add(balanceText);
-		
-		wincountLabel = new JLabel("You have won "+wincount+" times");
-		add(wincountLabel);
 		
 		
 		placeBetHandler placeBet = new placeBetHandler();
