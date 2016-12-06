@@ -8,9 +8,9 @@ public class Betting extends JFrame {
 	public static JLabel wincountLabel;
 	private JTextField inputBet;
 	public static double betAmountD;
-	private double betAmountAdd;
+	public static double betAmountAdd;
 	public static double balanceAmount = 500.00;
-	private JLabel balanceText;
+	private JLabel balanceText, moneyBag;
 	public static int wincount;
 	
 	
@@ -25,7 +25,15 @@ public class Betting extends JFrame {
 		
 		setLayout(new FlowLayout());
 		
-		betLabel = new JLabel("Choose your bet amount");
+		moneyBag = (new JLabel(new ImageIcon("moneyBag.png")));
+		add(moneyBag);
+		
+		ImageIcon img = new ImageIcon("moneyBag.png");
+		setIconImage(img.getImage());
+		
+		
+		
+		betLabel = new JLabel("Change your bet?");
 		add(betLabel);
 		
 		
@@ -37,7 +45,7 @@ public class Betting extends JFrame {
 		betButton = new JButton("Change Bet Amount");
 		add(betButton);
 		
-		addBet = new JButton("Add to Bet Amount");
+		addBet = new JButton("+");
 		add(addBet);
 		
 		betAmountLabel = new JLabel("Your current bet is "+betAmountD);

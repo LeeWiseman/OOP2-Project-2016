@@ -7,11 +7,12 @@ import java.util.Random;
 public class RandomGame extends JFrame {
 	
 	private JButton spinBtn;
-	private JButton backBtn;
+	private JButton backBtn, betButton, addBet;
 	private JTextArea numbers;
+	private JTextField inputBet;
 	private int choosenNumber, winningNumber;
 	private boolean win;
-	private JLabel balanceText, betAmount;
+	private JLabel balanceText, betAmount, betLabel;
 	Random spinner = new Random();
 	
 		
@@ -20,6 +21,25 @@ public class RandomGame extends JFrame {
 	public RandomGame(){
 		super("RandomGame");
 		setLayout(new FlowLayout());
+		
+		ImageIcon img = new ImageIcon("moneyBag.png");
+		setIconImage(img.getImage());
+		
+		betLabel = new JLabel("Choose your bet");
+		add(betLabel);
+		
+		
+		inputBet = new JTextField(5);
+		add(inputBet);
+		
+		
+		
+		betButton = new JButton("Change Bet Amount");
+		add(betButton);
+		
+		
+		addBet = new JButton("+");
+		add(addBet);
 		
 		betAmount = new JLabel("Youre betting "+Betting.betAmountD+" per spin");
 		add(betAmount);
@@ -46,7 +66,34 @@ public class RandomGame extends JFrame {
 		spinHandler spinit = new spinHandler();
 		spinBtn.addActionListener(spinit);
 		
+		placeBetHandler placeBet = new placeBetHandler();
+		betButton.addActionListener(placeBet);
+		
+		addBetHandler addBetListener = new addBetHandler();
+		addBet.addActionListener(addBetListener);
+		
 	}
+	
+			private class placeBetHandler implements ActionListener{
+		public void actionPerformed(ActionEvent changeBetPress){
+				Betting.betAmountD = Double.parseDouble(inputBet.getText());
+				inputBet.setText("");
+				betAmount.setText("Your bet amount is " + Betting.betAmountD);
+				
+				
+	}
+	}
+	
+	private class addBetHandler implements ActionListener{
+		public void actionPerformed(ActionEvent addPress){
+			Betting.betAmountAdd = (Double.parseDouble(inputBet.getText()));
+			Betting.betAmountD += Betting.betAmountAdd;
+			inputBet.setText("");
+			betAmount.setText("Your bet amount is " + Betting.betAmountD);
+		
+	}
+	}
+	
 		
 		private class backHandler implements ActionListener{
 			public void actionPerformed(ActionEvent backPress){
@@ -68,6 +115,7 @@ public class RandomGame extends JFrame {
 				winningNumber = 1+(spinner.nextInt(10));
 				
 				
+				if(Betting.balanceAmount-Betting.betAmountD>(-1)){
 				
 				if(choosenNumber == winningNumber){
 					numbers.setText("Your number was "+choosenNumber+"\nThe winning Number was "+winningNumber+"\nCongratulation, You Won!");
@@ -83,10 +131,15 @@ public class RandomGame extends JFrame {
 					balanceText.setText("You're new balance is "+Betting.balanceAmount);
 				}
 				
+				}
+				else{
+					JOptionPane.showMessageDialog(null,"You're out of money");
+				}
+				
 				
 			}		
 		}
-		}
+}
 		
 		
 	
